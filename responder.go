@@ -29,6 +29,13 @@ func StatusRessourceStopped() ResponsePayload {
 	}
 }
 
+func StatusRessourceUpdated() ResponsePayload {
+	return ResponsePayload{
+		StatusCode: STATUS_CODE_RESSOURCE_UPDATED,
+		StatusText: "resource updated",
+	}
+}
+
 func StatusRessourceDeleted() ResponsePayload {
 	return ResponsePayload{
 		StatusCode: STATUS_CODE_RESSOURCE_DELETED,

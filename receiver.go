@@ -12,6 +12,14 @@ func IsStatusRessourceStarted(responseBody string) (bool, error) {
   return IsStatus(STATUS_CODE_RESSOURCE_STARTED, responseBody)
 }
 
+func IsStatusRessourceStopped(responseBody string) (bool, error) {
+  return IsStatus(STATUS_CODE_RESSOURCE_STOPPED, responseBody)
+}
+
+func IsStatusRessourceDeleted(responseBody string) (bool, error) {
+  return IsStatus(STATUS_CODE_RESSOURCE_DELETED, responseBody)
+}
+
 func IsStatusRessourceAlreadyExists(responseBody string) (bool, error) {
   return IsStatus(STATUS_CODE_RESSOURCE_ALREADY_EXISTS, responseBody)
 }

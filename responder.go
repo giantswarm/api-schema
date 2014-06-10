@@ -22,6 +22,20 @@ func StatusRessourceStarted() ResponsePayload {
 	}
 }
 
+func StatusRessourceStopped() ResponsePayload {
+	return ResponsePayload{
+		StatusCode: STATUS_CODE_RESSOURCE_STOPPED,
+		StatusText: "resource stopped",
+	}
+}
+
+func StatusRessourceDeleted() ResponsePayload {
+	return ResponsePayload{
+		StatusCode: STATUS_CODE_RESSOURCE_DELETED,
+		StatusText: "resource deleted",
+	}
+}
+
 func StatusRessourceAlreadyExists() ResponsePayload {
 	return ResponsePayload{
 		StatusCode: STATUS_CODE_RESSOURCE_ALREADY_EXISTS,

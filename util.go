@@ -1,5 +1,12 @@
 package apischema
 
+import (
+  "net/http"
+  "encoding/json"
+
+  "github.com/juju/errgo"
+)
+
 func IsStatus(statusCode int, responseBody string) (bool, error) {
   var responsePayload ResponsePayload
   if err := json.Unmarshal([]byte(responseBody), &responsePayload); err != nil {

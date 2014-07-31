@@ -25,7 +25,7 @@ func IsStatusWithRawBody(statusCode int, responseBody io.ReadCloser) (bool, erro
 func isStatus(statusCode int, responseBody string) (bool, error) {
 	var responsePayload ResponsePayload
 	if err := json.Unmarshal([]byte(responseBody), &responsePayload); err != nil {
-		return false, errgo.Mask(err)
+		return false, errgo.Newf("Invalid request body. Expecting json. Aborting...")
 	}
 
 	if responsePayload.StatusCode == statusCode {

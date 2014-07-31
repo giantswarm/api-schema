@@ -1,7 +1,7 @@
 package apischema
 
 import (
-  "io"
+	"io"
 )
 
 func IsStatusData(responseBody io.ReadCloser) (bool, error) {

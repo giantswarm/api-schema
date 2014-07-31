@@ -1,30 +1,29 @@
 package apischema
 
 import (
-  "net/http"
-  "encoding/json"
+	"encoding/json"
+	"net/http"
 
-  "github.com/juju/errgo"
+	"github.com/juju/errgo"
 )
 
 func IsStatus(statusCode int, responseBody string) (bool, error) {
-  var responsePayload ResponsePayload
-  if err := json.Unmarshal([]byte(responseBody), &responsePayload); err != nil {
-    return false, errgo.Mask(err)
-  }
+	var responsePayload ResponsePayload
+	if err := json.Unmarshal([]byte(responseBody), &responsePayload); err != nil {
+		return false, errgo.Mask(err)
+	}
 
-  if responsePayload.StatusCode == STATUS_CODE_DATA {
-    return true, nil
-  }
+	if responsePayload.StatusCode == STATUS_CODE_DATA {
+		return true, nil
+	}
 
-  return false, nil
+	return false, nil
 }
 
 func IsSuccessResponse(statusCode int) bool {
-  return statusCode == http.StatusOK
+	return statusCode == http.StatusOK
 }
 
 func IsFailureResponse(statusCode int) bool {
-  return statusCode == http.StatusInternalServerError
+	return statusCode == http.StatusInternalServerError
 }
-

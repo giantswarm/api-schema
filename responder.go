@@ -4,7 +4,7 @@ func StatusData(data interface{}) ResponsePayload {
 	return ResponsePayload{
 		StatusCode: STATUS_CODE_DATA,
 		StatusText: "success",
-    Data: data,
+		Data:       data,
 	}
 }
 

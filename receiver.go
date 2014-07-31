@@ -24,6 +24,10 @@ func IsStatusRessourceDeleted(responseBody string) (bool, error) {
 	return IsStatus(STATUS_CODE_RESSOURCE_DELETED, responseBody)
 }
 
+func IsStatusRessourceNotFound(responseBody string) (bool, error) {
+	return IsStatus(STATUS_CODE_RESSOURCE_NOT_FOUND, responseBody)
+}
+
 func IsStatusRessourceAlreadyExists(responseBody string) (bool, error) {
 	return IsStatus(STATUS_CODE_RESSOURCE_ALREADY_EXISTS, responseBody)
 }

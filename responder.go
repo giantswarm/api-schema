@@ -43,6 +43,13 @@ func StatusRessourceDeleted() ResponsePayload {
 	}
 }
 
+func StatusRessourceNotFound() ResponsePayload {
+	return ResponsePayload{
+		StatusCode: STATUS_CODE_RESSOURCE_NOT_FOUND,
+		StatusText: "resource not found",
+	}
+}
+
 func StatusRessourceAlreadyExists() ResponsePayload {
 	return ResponsePayload{
 		StatusCode: STATUS_CODE_RESSOURCE_ALREADY_EXISTS,

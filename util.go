@@ -13,7 +13,7 @@ func IsStatus(statusCode int, responseBody string) (bool, error) {
 		return false, errgo.Mask(err)
 	}
 
-	if responsePayload.StatusCode == STATUS_CODE_DATA {
+	if responsePayload.StatusCode == statusCode {
 		return true, nil
 	}
 

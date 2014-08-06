@@ -8,6 +8,14 @@ func IsStatusData(responseBody *io.ReadCloser) (bool, error) {
 	return IsStatusWithRawBody(STATUS_CODE_DATA, responseBody)
 }
 
+func IsStatusRessourceUp(responseBody *io.ReadCloser) (bool, error) {
+	return IsStatusWithRawBody(STATUS_CODE_RESSOURCE_UP, responseBody)
+}
+
+func IsStatusRessourceDown(responseBody *io.ReadCloser) (bool, error) {
+	return IsStatusWithRawBody(STATUS_CODE_RESSOURCE_DOWN, responseBody)
+}
+
 func IsStatusRessourceCreated(responseBody *io.ReadCloser) (bool, error) {
 	return IsStatusWithRawBody(STATUS_CODE_RESSOURCE_CREATED, responseBody)
 }

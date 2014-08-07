@@ -8,65 +8,65 @@ func StatusData(data interface{}) ResponsePayload {
 	}
 }
 
-func StatusRessourceUp() ResponsePayload {
+func StatusResourceUp() ResponsePayload {
 	return ResponsePayload{
-		StatusCode: STATUS_CODE_RESSOURCE_UP,
+		StatusCode: STATUS_CODE_RESOURCE_UP,
 		StatusText: "resource up",
 	}
 }
 
-func StatusRessourceDown() ResponsePayload {
+func StatusResourceDown() ResponsePayload {
 	return ResponsePayload{
-		StatusCode: STATUS_CODE_RESSOURCE_DOWN,
+		StatusCode: STATUS_CODE_RESOURCE_DOWN,
 		StatusText: "resource down",
 	}
 }
 
-func StatusRessourceCreated() ResponsePayload {
+func StatusResourceCreated() ResponsePayload {
 	return ResponsePayload{
-		StatusCode: STATUS_CODE_RESSOURCE_CREATED,
+		StatusCode: STATUS_CODE_RESOURCE_CREATED,
 		StatusText: "resource created",
 	}
 }
 
-func StatusRessourceStarted() ResponsePayload {
+func StatusResourceStarted() ResponsePayload {
 	return ResponsePayload{
-		StatusCode: STATUS_CODE_RESSOURCE_STARTED,
+		StatusCode: STATUS_CODE_RESOURCE_STARTED,
 		StatusText: "resource started",
 	}
 }
 
-func StatusRessourceStopped() ResponsePayload {
+func StatusResourceStopped() ResponsePayload {
 	return ResponsePayload{
-		StatusCode: STATUS_CODE_RESSOURCE_STOPPED,
+		StatusCode: STATUS_CODE_RESOURCE_STOPPED,
 		StatusText: "resource stopped",
 	}
 }
 
-func StatusRessourceUpdated() ResponsePayload {
+func StatusResourceUpdated() ResponsePayload {
 	return ResponsePayload{
-		StatusCode: STATUS_CODE_RESSOURCE_UPDATED,
+		StatusCode: STATUS_CODE_RESOURCE_UPDATED,
 		StatusText: "resource updated",
 	}
 }
 
-func StatusRessourceDeleted() ResponsePayload {
+func StatusResourceDeleted() ResponsePayload {
 	return ResponsePayload{
-		StatusCode: STATUS_CODE_RESSOURCE_DELETED,
+		StatusCode: STATUS_CODE_RESOURCE_DELETED,
 		StatusText: "resource deleted",
 	}
 }
 
-func StatusRessourceNotFound() ResponsePayload {
+func StatusResourceNotFound() ResponsePayload {
 	return ResponsePayload{
-		StatusCode: STATUS_CODE_RESSOURCE_NOT_FOUND,
+		StatusCode: STATUS_CODE_RESOURCE_NOT_FOUND,
 		StatusText: "resource not found",
 	}
 }
 
-func StatusRessourceAlreadyExists() ResponsePayload {
+func StatusResourceAlreadyExists() ResponsePayload {
 	return ResponsePayload{
-		StatusCode: STATUS_CODE_RESSOURCE_ALREADY_EXISTS,
+		StatusCode: STATUS_CODE_RESOURCE_ALREADY_EXISTS,
 		StatusText: "resource already exists",
 	}
 }

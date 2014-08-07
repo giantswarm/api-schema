@@ -8,38 +8,38 @@ func IsStatusData(responseBody *io.ReadCloser) (bool, error) {
 	return IsStatusWithRawBody(STATUS_CODE_DATA, responseBody)
 }
 
-func IsStatusRessourceUp(responseBody *io.ReadCloser) (bool, error) {
-	return IsStatusWithRawBody(STATUS_CODE_RESSOURCE_UP, responseBody)
+func IsStatusResourceUp(responseBody *io.ReadCloser) (bool, error) {
+	return IsStatusWithRawBody(STATUS_CODE_RESOURCE_UP, responseBody)
 }
 
-func IsStatusRessourceDown(responseBody *io.ReadCloser) (bool, error) {
-	return IsStatusWithRawBody(STATUS_CODE_RESSOURCE_DOWN, responseBody)
+func IsStatusResourceDown(responseBody *io.ReadCloser) (bool, error) {
+	return IsStatusWithRawBody(STATUS_CODE_RESOURCE_DOWN, responseBody)
 }
 
-func IsStatusRessourceCreated(responseBody *io.ReadCloser) (bool, error) {
-	return IsStatusWithRawBody(STATUS_CODE_RESSOURCE_CREATED, responseBody)
+func IsStatusResourceCreated(responseBody *io.ReadCloser) (bool, error) {
+	return IsStatusWithRawBody(STATUS_CODE_RESOURCE_CREATED, responseBody)
 }
 
-func IsStatusRessourceStarted(responseBody *io.ReadCloser) (bool, error) {
-	return IsStatusWithRawBody(STATUS_CODE_RESSOURCE_STARTED, responseBody)
+func IsStatusResourceStarted(responseBody *io.ReadCloser) (bool, error) {
+	return IsStatusWithRawBody(STATUS_CODE_RESOURCE_STARTED, responseBody)
 }
 
-func IsStatusRessourceStopped(responseBody *io.ReadCloser) (bool, error) {
-	return IsStatusWithRawBody(STATUS_CODE_RESSOURCE_STOPPED, responseBody)
+func IsStatusResourceStopped(responseBody *io.ReadCloser) (bool, error) {
+	return IsStatusWithRawBody(STATUS_CODE_RESOURCE_STOPPED, responseBody)
 }
 
-func IsStatusRessourceUpdated(responseBody *io.ReadCloser) (bool, error) {
-	return IsStatusWithRawBody(STATUS_CODE_RESSOURCE_UPDATED, responseBody)
+func IsStatusResourceUpdated(responseBody *io.ReadCloser) (bool, error) {
+	return IsStatusWithRawBody(STATUS_CODE_RESOURCE_UPDATED, responseBody)
 }
 
-func IsStatusRessourceDeleted(responseBody *io.ReadCloser) (bool, error) {
-	return IsStatusWithRawBody(STATUS_CODE_RESSOURCE_DELETED, responseBody)
+func IsStatusResourceDeleted(responseBody *io.ReadCloser) (bool, error) {
+	return IsStatusWithRawBody(STATUS_CODE_RESOURCE_DELETED, responseBody)
 }
 
-func IsStatusRessourceNotFound(responseBody *io.ReadCloser) (bool, error) {
-	return IsStatusWithRawBody(STATUS_CODE_RESSOURCE_NOT_FOUND, responseBody)
+func IsStatusResourceNotFound(responseBody *io.ReadCloser) (bool, error) {
+	return IsStatusWithRawBody(STATUS_CODE_RESOURCE_NOT_FOUND, responseBody)
 }
 
-func IsStatusRessourceAlreadyExists(responseBody *io.ReadCloser) (bool, error) {
-	return IsStatusWithRawBody(STATUS_CODE_RESSOURCE_ALREADY_EXISTS, responseBody)
+func IsStatusResourceAlreadyExists(responseBody *io.ReadCloser) (bool, error) {
+	return IsStatusWithRawBody(STATUS_CODE_RESOURCE_ALREADY_EXISTS, responseBody)
 }

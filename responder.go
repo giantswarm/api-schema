@@ -8,6 +8,20 @@ func StatusData(data interface{}) ResponsePayload {
 	}
 }
 
+func StatusRessourceUp() ResponsePayload {
+	return ResponsePayload{
+		StatusCode: STATUS_CODE_RESSOURCE_UP,
+		StatusText: "resource up",
+	}
+}
+
+func StatusRessourceDown() ResponsePayload {
+	return ResponsePayload{
+		StatusCode: STATUS_CODE_RESSOURCE_DOWN,
+		StatusText: "resource down",
+	}
+}
+
 func StatusRessourceCreated() ResponsePayload {
 	return ResponsePayload{
 		StatusCode: STATUS_CODE_RESSOURCE_CREATED,

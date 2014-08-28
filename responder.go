@@ -70,3 +70,10 @@ func StatusResourceAlreadyExists() ResponsePayload {
 		StatusText: "resource already exists",
 	}
 }
+
+func StatusResourceInvalidCredentials() ResponsePayload {
+	return ResponsePayload{
+		StatusCode: STATUS_CODE_RESOURCE_INVALID_CREDENTIALS,
+		StatusText: "resource invalid credentials",
+	}
+}

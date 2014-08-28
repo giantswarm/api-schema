@@ -43,3 +43,7 @@ func IsStatusResourceNotFound(responseBody *io.ReadCloser) (bool, error) {
 func IsStatusResourceAlreadyExists(responseBody *io.ReadCloser) (bool, error) {
 	return IsStatusWithRawBody(STATUS_CODE_RESOURCE_ALREADY_EXISTS, responseBody)
 }
+
+func IsStatusResourceInvalidCredentials(responseBody *io.ReadCloser) (bool, error) {
+	return IsStatusWithRawBody(STATUS_CODE_RESOURCE_INVALID_CREDENTIALS, responseBody)
+}

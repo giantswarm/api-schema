@@ -14,8 +14,8 @@ func IsStatus(statusCode int, responseBody string) (bool, error) {
 	return isStatus(statusCode, responseBody)
 }
 
-func IsStatusWithRawBody(statusCode int, responseBody *io.ReadCloser) (bool, error) {
-	byteSlice, err := ioutil.ReadAll(*responseBody)
+func IsStatusWithRawBody(statusCode int, resBody *io.ReadCloser) (bool, error) {
+	byteSlice, err := ioutil.ReadAll(*resBody)
 	if err != nil {
 		return false, errgo.Mask(err, errgo.Any)
 	}
@@ -25,7 +25,7 @@ func IsStatusWithRawBody(statusCode int, responseBody *io.ReadCloser) (bool, err
 	// response, we consume the stream maybe somebody else would like too. Thus
 	// we buffer the response body and write it back to the original response
 	// body reference.
-	*responseBody = ioutil.NopCloser(bytes.NewReader(byteSlice))
+	*resBody = ioutil.NopCloser(bytes.NewReader(byteSlice))
 
 	return isStatus(statusCode, string(byteSlice))
 }
@@ -51,4 +51,35 @@ func IsSuccessResponse(statusCode int) bool {
 
 func IsFailureResponse(statusCode int) bool {
 	return statusCode == http.StatusInternalServerError
+}
+
+type ServerResponse struct {
+	StatusCode int                `json:"status_code"`
+	StatusText string             `json:"status_text"`
+	Data       ServerResponseData `json:"data"`
+}
+
+type ServerResponseData struct {
+	UnmarshalTarget interface{}
+}
+
+func ParseData(resBody *io.ReadCloser, v interface{}) error {
+	byteSlice, err := ioutil.ReadAll(*resBody)
+	if err != nil {
+		return errgo.Mask(err)
+	}
+
+	// This is a hack to be able to read from response body twice. Because we
+	// need to read the response body to identify the actual status of the
+	// response, we consume the stream maybe somebody else would like too. Thus
+	// we buffer the response body and write it back to the original response
+	// body reference.
+	*resBody = ioutil.NopCloser(bytes.NewReader(byteSlice))
+
+	target := ServerResponse{Data: ServerResponseData{&v}}
+	if err := json.Unmarshal(byteSlice, &target); err != nil {
+		return errgo.Mask(err)
+	}
+
+  return nil
 }

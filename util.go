@@ -54,13 +54,9 @@ func IsFailureResponse(statusCode int) bool {
 }
 
 type ServerResponse struct {
-	StatusCode int                `json:"status_code"`
-	StatusText string             `json:"status_text"`
-	Data       ServerResponseData `json:"data"`
-}
-
-type ServerResponseData struct {
-	UnmarshalTarget interface{}
+	StatusCode int         `json:"status_code"`
+	StatusText string      `json:"status_text"`
+	Data       interface{} `json:"data"`
 }
 
 func ParseData(resBody *io.ReadCloser, v interface{}) error {
@@ -76,10 +72,10 @@ func ParseData(resBody *io.ReadCloser, v interface{}) error {
 	// body reference.
 	*resBody = ioutil.NopCloser(bytes.NewReader(byteSlice))
 
-	target := ServerResponse{Data: ServerResponseData{&v}}
+	target := ServerResponse{Data: &v}
 	if err := json.Unmarshal(byteSlice, &target); err != nil {
 		return errgo.Mask(err)
 	}
 
-  return nil
+	return nil
 }

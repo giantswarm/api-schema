@@ -74,7 +74,9 @@ func ParseData(resBody *io.ReadCloser, v interface{}) error {
 
 	target := ServerResponse{Data: &v}
 	if err := json.Unmarshal(byteSlice, &target); err != nil {
-		return errgo.Mask(err)
+		// In case we receive a response we did not expect and cannot read, we just
+		// return an error containing the content of the response.
+		return errgo.New(string(byteSlice))
 	}
 
 	return nil

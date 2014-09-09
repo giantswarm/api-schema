@@ -80,7 +80,7 @@ func StatusResourceInvalidCredentials() ResponsePayload {
 
 func StatusWrongInput() ResponsePayload {
 	return ResponsePayload{
-		StatusCode: STATUS_CODE_RESOURCE_INVALID_CREDENTIALS,
+		StatusCode: STATUS_CODE_WRONG_INPUT,
 		StatusText: "wrong input",
 	}
 }

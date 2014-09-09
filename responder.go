@@ -77,3 +77,10 @@ func StatusResourceInvalidCredentials() ResponsePayload {
 		StatusText: "resource invalid credentials",
 	}
 }
+
+func StatusWrongInput() ResponsePayload {
+	return ResponsePayload{
+		StatusCode: STATUS_CODE_RESOURCE_INVALID_CREDENTIALS,
+		StatusText: "wrong input",
+	}
+}

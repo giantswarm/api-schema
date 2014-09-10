@@ -47,3 +47,7 @@ func IsStatusResourceAlreadyExists(responseBody *io.ReadCloser) (bool, error) {
 func IsStatusResourceInvalidCredentials(responseBody *io.ReadCloser) (bool, error) {
 	return IsStatusWithRawBody(STATUS_CODE_RESOURCE_INVALID_CREDENTIALS, responseBody)
 }
+
+func IsStatusWrongInput(responseBody *io.ReadCloser) (bool, error) {
+	return IsStatusWithRawBody(STATUS_CODE_WRONG_INPUT, responseBody)
+}

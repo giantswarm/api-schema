@@ -19,10 +19,6 @@ const (
 	STATUS_CODE_WRONG_INPUT
 )
 
-const (
-	STATUS_TEXT_WRONG_INPUT = "wrong input"
-)
-
 type ResponsePayload struct {
 	StatusCode int         `json:"status_code"`
 	StatusText string      `json:"status_text"`

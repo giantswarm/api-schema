@@ -81,6 +81,19 @@ func StatusResourceInvalidCredentials() ResponsePayload {
 func StatusWrongInput() ResponsePayload {
 	return ResponsePayload{
 		StatusCode: STATUS_CODE_WRONG_INPUT,
-		StatusText: "wrong input",
+		StatusText: STATUS_TEXT_WRONG_INPUT,
+	}
+}
+
+func StatusWrongInputWithReason(reason string) ResponsePayload {
+	text := STATUS_TEXT_WRONG_INPUT
+
+	if len(reason) > 0 {
+		text = text + ": " + reason
+	}
+
+	return ResponsePayload{
+		StatusCode: STATUS_CODE_WRONG_INPUT,
+		StatusText: text,
 	}
 }

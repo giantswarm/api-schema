@@ -1,7 +1,11 @@
 package apischema
 
-func StatusData(data interface{}) *Response {
-	return NewResponse(STATUS_CODE_DATA, "success", data)
+func StatusData(data interface{}) ResponsePayload {
+	return ResponsePayload{
+		StatusCode: STATUS_CODE_DATA,
+		StatusText: "success",
+		Data:       data,
+	}
 }
 
 func StatusResourceUp() *Response {

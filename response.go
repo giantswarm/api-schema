@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"io"
 	"io/ioutil"
+	"net/http"
 
 	"github.com/juju/errgo"
 )
@@ -52,6 +53,13 @@ func ParseResponse(resBody *io.ReadCloser) (*Response, error) {
 	}
 
 	return &target, nil
+}
+
+func FromHTTPResponse(resp *http.Response, err error) (*Response, error) {
+	if err != nil {
+		return nil, err
+	}
+	return ParseResponse(resp.Body)
 }
 
 func (resp *Response) EnsureStatusCodes(statusCodes ...int) error {

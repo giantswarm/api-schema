@@ -21,7 +21,7 @@ func (err *ResponseError) StatusCode() int {
 }
 
 func checkResponseErrorStatusCode(err error, statusCode int) bool {
-	ok, respErr := err.(*ResponseError)
+	respErr, ok := err.(*ResponseError)
 	if !ok {
 		return false
 	}

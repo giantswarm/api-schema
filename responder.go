@@ -21,7 +21,7 @@ func StatusResourceCreated() *Response {
 }
 
 func StatusResourceStarted() *Response {
-	return NewEmptyResponse("STATUS_CODE_RESOURCE_STARTED", "resource started")
+	return NewEmptyResponse(STATUS_CODE_RESOURCE_STARTED, "resource started")
 }
 
 func StatusResourceStopped() *Response {

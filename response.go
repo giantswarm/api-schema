@@ -23,13 +23,17 @@ func NewEmptyResponse(statusCode int, statusText string) *Response {
 	}
 }
 
-func NewResponse(statusCode int, statusText string, data interface{}) *Response {
-	rawData := json.Marshal(data)
-	return &Reponse{
+func NewResponse(statusCode int, statusText string, data interface{}) (*Response, error) {
+	rawData, err := json.Marshal(data)
+	if err != nil {
+		return nil, errgo.Mask(err)
+	}
+
+	return &Response{
 		StatusCode: statusCode,
 		StatusText: statusText,
 		Data:       rawData,
-	}
+	}, nil
 }
 
 func ParseResponse(resBody *io.ReadCloser) (*Response, error) {
@@ -59,7 +63,7 @@ func FromHTTPResponse(resp *http.Response, err error) (*Response, error) {
 	if err != nil {
 		return nil, err
 	}
-	return ParseResponse(resp.Body)
+	return ParseResponse(&resp.Body)
 }
 
 func (resp *Response) EnsureStatusCodes(statusCodes ...int) error {

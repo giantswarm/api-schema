@@ -29,6 +29,14 @@ func checkResponseErrorStatusCode(err error, statusCode int) bool {
 	return respErr.StatusCode() == statusCode
 }
 
+func IsResourceUpError(err error) bool {
+	return checkResponseErrorStatusCode(err, STATUS_CODE_RESOURCE_UP)
+}
+
+func IsResourceDownError(err error) bool {
+	return checkResponseErrorStatusCode(err, STATUS_CODE_RESOURCE_DOWN)
+}
+
 func IsResourceNotFoundError(err error) bool {
 	return checkResponseErrorStatusCode(err, STATUS_CODE_RESOURCE_NOT_FOUND)
 }

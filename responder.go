@@ -8,89 +8,56 @@ func StatusData(data interface{}) ResponsePayload {
 	}
 }
 
-func StatusResourceUp() ResponsePayload {
-	return ResponsePayload{
-		StatusCode: STATUS_CODE_RESOURCE_UP,
-		StatusText: "resource up",
-	}
+func StatusResourceUp() *Response {
+	return NewEmptyResponse(STATUS_CODE_RESOURCE_UP, "resource up")
 }
 
-func StatusResourceDown() ResponsePayload {
-	return ResponsePayload{
-		StatusCode: STATUS_CODE_RESOURCE_DOWN,
-		StatusText: "resource down",
-	}
+func StatusResourceDown() *Response {
+	return NewEmptyResponse(STATUS_CODE_RESOURCE_DOWN, "resource down")
 }
 
-func StatusResourceCreated() ResponsePayload {
-	return ResponsePayload{
-		StatusCode: STATUS_CODE_RESOURCE_CREATED,
-		StatusText: "resource created",
-	}
+func StatusResourceCreated() *Response {
+	return NewEmptyResponse(STATUS_CODE_RESOURCE_CREATED, "resource created")
 }
 
-func StatusResourceStarted() ResponsePayload {
-	return ResponsePayload{
-		StatusCode: STATUS_CODE_RESOURCE_STARTED,
-		StatusText: "resource started",
-	}
+func StatusResourceStarted() *Response {
+	return NewEmptyResponse(STATUS_CODE_RESOURCE_STARTED, "resource started")
 }
 
-func StatusResourceStopped() ResponsePayload {
-	return ResponsePayload{
-		StatusCode: STATUS_CODE_RESOURCE_STOPPED,
-		StatusText: "resource stopped",
-	}
+func StatusResourceStopped() *Response {
+	return NewEmptyResponse(STATUS_CODE_RESOURCE_STOPPED, "resource stopped")
 }
 
-func StatusResourceUpdated() ResponsePayload {
-	return ResponsePayload{
-		StatusCode: STATUS_CODE_RESOURCE_UPDATED,
-		StatusText: "resource updated",
-	}
+func StatusResourceUpdated() *Response {
+	return NewEmptyResponse(STATUS_CODE_RESOURCE_UPDATED, "resource updated")
 }
 
-func StatusResourceDeleted() ResponsePayload {
-	return ResponsePayload{
-		StatusCode: STATUS_CODE_RESOURCE_DELETED,
-		StatusText: "resource deleted",
-	}
+func StatusResourceDeleted() *Response {
+	return NewEmptyResponse(STATUS_CODE_RESOURCE_DELETED, "resource deleted")
 }
 
-func StatusResourceNotFound() ResponsePayload {
-	return ResponsePayload{
-		StatusCode: STATUS_CODE_RESOURCE_NOT_FOUND,
-		StatusText: "resource not found",
-	}
+func StatusResourceNotFound() *Response {
+	return NewEmptyResponse(STATUS_CODE_RESOURCE_NOT_FOUND, "resource not found")
 }
 
-func StatusResourceAlreadyExists() ResponsePayload {
-	return ResponsePayload{
-		StatusCode: STATUS_CODE_RESOURCE_ALREADY_EXISTS,
-		StatusText: "resource already exists",
-	}
+func StatusResourceAlreadyExists() *Response {
+	return NewEmptyResponse(STATUS_CODE_RESOURCE_ALREADY_EXISTS, "resource already exists")
 }
 
-func StatusResourceInvalidCredentials() ResponsePayload {
-	return ResponsePayload{
-		StatusCode: STATUS_CODE_RESOURCE_INVALID_CREDENTIALS,
-		StatusText: "resource invalid credentials",
-	}
+func StatusResourceInvalidCredentials() *Response {
+	return NewEmptyResponse(STATUS_CODE_RESOURCE_INVALID_CREDENTIALS, "resource invalid credentials")
 }
 
-func StatusWrongInput() ResponsePayload {
+func StatusWrongInput() *Response {
 	return StatusWrongInputWithReason("")
 }
 
-func StatusWrongInputWithReason(reason string) ResponsePayload {
+func StatusWrongInputWithReason(reason string) *Response {
 	text := "wrong input"
 
 	if len(reason) > 0 {
 		text = text + ": " + reason
 	}
 
-	return ResponsePayload{
-		StatusCode: STATUS_CODE_WRONG_INPUT,
-		StatusText: text,
-	}
+	return NewEmptyResponse(STATUS_CODE_WRONG_INPUT, text)
 }

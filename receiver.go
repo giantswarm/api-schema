@@ -48,6 +48,10 @@ func IsStatusResourceInvalidCredentials(responseBody *io.ReadCloser) (bool, erro
 	return IsStatusWithRawBody(STATUS_CODE_RESOURCE_INVALID_CREDENTIALS, responseBody)
 }
 
+func IsStatusConditionTrue(responseBody *io.ReadCloser) (bool, error) {
+	return IsStatusWithRawBody(STATUS_CODE_CONDITION_TRUE, responseBody)
+}
+
 func IsStatusWrongInput(responseBody *io.ReadCloser) (bool, error) {
 	return IsStatusWithRawBody(STATUS_CODE_WRONG_INPUT, responseBody)
 }

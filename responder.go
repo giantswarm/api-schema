@@ -48,6 +48,10 @@ func StatusResourceInvalidCredentials() *Response {
 	return NewEmptyResponse(STATUS_CODE_RESOURCE_INVALID_CREDENTIALS, "resource invalid credentials")
 }
 
+func StatusConditionTrue() *Response {
+	return NewEmptyResponse(STATUS_CODE_CONDITION_TRUE, "condition true")
+}
+
 func StatusWrongInput() *Response {
 	return StatusWrongInputWithReason("")
 }

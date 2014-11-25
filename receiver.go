@@ -52,6 +52,10 @@ func IsStatusConditionTrue(responseBody *io.ReadCloser) (bool, error) {
 	return IsStatusWithRawBody(STATUS_CODE_CONDITION_TRUE, responseBody)
 }
 
+func IsStatusConditionFalse(responseBody *io.ReadCloser) (bool, error) {
+	return IsStatusWithRawBody(STATUS_CODE_CONDITION_FALSE, responseBody)
+}
+
 func IsStatusWrongInput(responseBody *io.ReadCloser) (bool, error) {
 	return IsStatusWithRawBody(STATUS_CODE_WRONG_INPUT, responseBody)
 }

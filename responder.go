@@ -52,6 +52,10 @@ func StatusConditionTrue() *Response {
 	return NewEmptyResponse(STATUS_CODE_CONDITION_TRUE, "condition true")
 }
 
+func StatusConditionFalse() *Response {
+	return NewEmptyResponse(STATUS_CODE_CONDITION_FALSE, "condition false")
+}
+
 func StatusWrongInput() *Response {
 	return StatusWrongInputWithReason("")
 }

@@ -61,11 +61,13 @@ func StatusWrongInput() *Response {
 }
 
 func StatusWrongInputWithReason(reason string) *Response {
-	text := "wrong input"
+	return NewEmptyResponse(STATUS_CODE_WRONG_INPUT, newReason("user error", reason))
+}
 
-	if len(reason) > 0 {
-		text = text + ": " + reason
-	}
+func StatusUserErrorWithReason(reason string) *Response {
+	return NewEmptyResponse(STATUS_CODE_USER_ERROR, newReason("user error", reason))
+}
 
-	return NewEmptyResponse(STATUS_CODE_WRONG_INPUT, text)
+func StatusServerErrorWithReason(reason string) *Response {
+	return NewEmptyResponse(STATUS_CODE_SERVER_ERROR, newReason("server error", reason))
 }

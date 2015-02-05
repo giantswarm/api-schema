@@ -45,6 +45,14 @@ func isStatus(statusCode int, responseBody string) (bool, error) {
 	return false, nil
 }
 
+func newReason(text, reason string) string {
+	if len(reason) > 0 {
+		text = text + ": " + reason
+	}
+
+	return text
+}
+
 func IsSuccessResponse(statusCode int) bool {
 	return statusCode == http.StatusOK
 }

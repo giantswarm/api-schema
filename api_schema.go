@@ -20,6 +20,9 @@ const (
 	STATUS_CODE_CONDITION_FALSE = 10012
 	STATUS_CODE_WRONG_INPUT     = 10013
 
+	STATUS_CODE_USER_ERROR   = 10014
+	STATUS_CODE_SERVER_ERROR = 10015
+
 	// NOTE: We want explicit values instead of using iota to be more robust
 	// against reordering and/or adding new values inbetween.
 )

@@ -52,3 +52,11 @@ func IsResourceInvalidCredentialsError(err error) bool {
 func IsWrongInputError(err error) bool {
 	return checkResponseErrorStatusCode(err, STATUS_CODE_WRONG_INPUT)
 }
+
+func IsUserError(err error) bool {
+	return checkResponseErrorStatusCode(err, STATUS_CODE_USER_ERROR)
+}
+
+func IsServerError(err error) bool {
+	return checkResponseErrorStatusCode(err, STATUS_CODE_SERVER_ERROR)
+}

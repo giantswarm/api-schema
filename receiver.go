@@ -59,3 +59,6 @@ func IsStatusConditionFalse(responseBody *io.ReadCloser) (bool, error) {
 func IsStatusWrongInput(responseBody *io.ReadCloser) (bool, error) {
 	return IsStatusWithRawBody(STATUS_CODE_WRONG_INPUT, responseBody)
 }
+
+// DEPRECATED: this checks are outdated and based on ugly checks we no longer
+// want to use. Implement new receiver checks in error.go

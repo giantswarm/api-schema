@@ -30,29 +30,6 @@ func IsStatusWithRawBody(statusCode int, resBody *io.ReadCloser) (bool, error) {
 	return isStatus(statusCode, string(byteSlice))
 }
 
-func isStatus(statusCode int, responseBody string) (bool, error) {
-	var responsePayload ResponsePayload
-	if err := json.Unmarshal([]byte(responseBody), &responsePayload); err != nil {
-		// In case we receive a response we did not expect and cannot read, we just
-		// return an error containing the content of the response.
-		return false, errgo.Newf(responseBody)
-	}
-
-	if responsePayload.StatusCode == statusCode {
-		return true, nil
-	}
-
-	return false, nil
-}
-
-func newReason(text, reason string) string {
-	if len(reason) > 0 {
-		text = text + ": " + reason
-	}
-
-	return text
-}
-
 func IsSuccessResponse(statusCode int) bool {
 	return statusCode == http.StatusOK
 }
@@ -88,4 +65,44 @@ func ParseData(resBody *io.ReadCloser, v interface{}) error {
 	}
 
 	return nil
+}
+
+//------------------------------------------------------------------------------
+// private
+
+func isStatus(statusCode int, responseBody string) (bool, error) {
+	var responsePayload ResponsePayload
+	if err := json.Unmarshal([]byte(responseBody), &responsePayload); err != nil {
+		// In case we receive a response we did not expect and cannot read, we just
+		// return an error containing the content of the response.
+		return false, errgo.Newf(responseBody)
+	}
+
+	if responsePayload.StatusCode == statusCode {
+		return true, nil
+	}
+
+	return false, nil
+}
+
+func newReason(text, reason string) string {
+	if len(reason) > 0 {
+		text = text + ": " + reason
+	}
+
+	return text
+}
+
+func isJSON(s string) bool {
+	return isJSONMap(s) || isJSONSlice(s)
+}
+
+func isJSONMap(s string) bool {
+	var js map[string]interface{}
+	return json.Unmarshal([]byte(s), &js) == nil
+}
+
+func isJSONSlice(s string) bool {
+	var js []interface{}
+	return json.Unmarshal([]byte(s), &js) == nil
 }

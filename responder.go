@@ -71,3 +71,7 @@ func StatusUserErrorWithReason(reason string) *Response {
 func StatusServerErrorWithReason(reason string) *Response {
 	return NewEmptyResponse(STATUS_CODE_SERVER_ERROR, newReason("server error", reason))
 }
+
+func StatusInvalidVersion() *Response {
+	return NewEmptyResponse(STATUS_CODE_INVALID_VERSION_ERROR, "invalid version")
+}

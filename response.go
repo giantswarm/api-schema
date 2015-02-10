@@ -50,10 +50,13 @@ func ParseResponse(resBody *io.ReadCloser) (*Response, error) {
 	*resBody = ioutil.NopCloser(bytes.NewReader(byteSlice))
 
 	target := Response{}
-	if err := json.Unmarshal(byteSlice, &target); err != nil {
-		// In case we receive a response we did not expect and cannot read, we just
-		// return an error containing the content of the response.
-		return nil, errgo.New(string(byteSlice))
+
+	if isJSON(string(byteSlice)) {
+		if err := json.Unmarshal(byteSlice, &target); err != nil {
+			// In case we receive a response we did not expect and cannot read, we just
+			// return an error containing the content of the response.
+			return nil, errgo.New(string(byteSlice))
+		}
 	}
 
 	return &target, nil

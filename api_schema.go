@@ -23,6 +23,8 @@ const (
 	STATUS_CODE_USER_ERROR   = 10014
 	STATUS_CODE_SERVER_ERROR = 10015
 
+	STATUS_CODE_INVALID_VERSION_ERROR = 10016
+
 	// NOTE: We want explicit values instead of using iota to be more robust
 	// against reordering and/or adding new values inbetween.
 )

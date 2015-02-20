@@ -2,7 +2,7 @@
 
 ### docs
 For detailed information and responder as well as receiver implementations, see
-http://godoc.org/github.com/catalyst-zero/api-schema.
+http://godoc.org/github.com/giantswarm/api-schema.
 
 ### facts
 - HTTP status codes not always met the required business logic
@@ -42,7 +42,7 @@ POST /app/
 
 ### usage
 Using the [middleware-server
-package](https://github.com/catalyst-zero/middleware-server) a middleware
+package](https://github.com/giantswarm/middleware-server) a middleware
 implementation could look like the following.
 ```go
 package v1
@@ -50,8 +50,8 @@ package v1
 import (
 	"net/http"
 
-	apiSchemaPkg "github.com/catalyst-zero/api-schema"
-	srvPkg "github.com/catalyst-zero/middleware-server"
+	apiSchemaPkg "github.com/giantswarm/api-schema"
+	srvPkg "github.com/giantswarm/middleware-server"
 )
 
 // Reply with status "ressource created".

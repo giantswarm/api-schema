@@ -2,7 +2,7 @@ PROJECT=api-schema
 
 BUILD_PATH := $(shell pwd)/.gobuild
 
-C0_PATH := $(BUILD_PATH)/src/github.com/catalyst-zero
+GS_PATH := $(BUILD_PATH)/src/github.com/giantswarm
 
 BIN=api-schema
 
@@ -20,12 +20,12 @@ clean:
 get-deps: .gobuild
 
 .gobuild:
-	mkdir -p $(C0_PATH)
-	cd $(C0_PATH) && ln -s ../../../.. $(PROJECT)
+	mkdir -p $(GS_PATH)
+	cd $(GS_PATH) && ln -s ../../../.. $(PROJECT)
 
 	#
 	# Fetch public dependencies via `go get`
-	GOPATH=$(GOPATH) go get -d -v github.com/catalyst-zero/$(PROJECT)
+	GOPATH=$(GOPATH) go get -d -v github.com/giantswarm/$(PROJECT)
 
 $(BIN): $(SOURCE)
 	GOPATH=$(GOPATH) go build -o $(BIN)

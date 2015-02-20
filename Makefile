@@ -2,7 +2,7 @@ PROJECT=api-schema
 
 BUILD_PATH := $(shell pwd)/.gobuild
 
-GS_PATH := $(BUILD_PATH)/src/github.com/giantswarm
+PROJECT_PATH := $(BUILD_PATH)/src/github.com/giantswarm
 
 BIN=api-schema
 
@@ -20,8 +20,8 @@ clean:
 get-deps: .gobuild
 
 .gobuild:
-	mkdir -p $(GS_PATH)
-	cd $(GS_PATH) && ln -s ../../../.. $(PROJECT)
+	mkdir -p $(PROJECT_PATH)
+	cd $(PROJECT_PATH) && ln -s ../../../.. $(PROJECT)
 
 	#
 	# Fetch public dependencies via `go get`

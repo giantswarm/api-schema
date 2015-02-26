@@ -61,7 +61,7 @@ func StatusWrongInput() *Response {
 }
 
 func StatusWrongInputWithReason(reason string) *Response {
-	return NewEmptyResponse(STATUS_CODE_WRONG_INPUT, newReason("user error", reason))
+	return NewEmptyResponse(STATUS_CODE_WRONG_INPUT, newReason("wrong input", reason))
 }
 
 func StatusUserErrorWithReason(reason string) *Response {

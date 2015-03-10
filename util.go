@@ -6,15 +6,24 @@ import (
 	"io"
 	"io/ioutil"
 	"net/http"
+	"strings"
 
 	"github.com/juju/errgo"
 )
 
 func IsStatus(statusCode int, responseBody string) (bool, error) {
-	return isStatus(statusCode, responseBody)
+	return isStatus(statusCode, "", responseBody)
+}
+
+func IsStatusAndReason(statusCode int, reason, responseBody string) (bool, error) {
+	return isStatus(statusCode, reason, responseBody)
 }
 
 func IsStatusWithRawBody(statusCode int, resBody *io.ReadCloser) (bool, error) {
+	return IsStatusAndReasonWithRawBody(statusCode, "", resBody)
+}
+
+func IsStatusAndReasonWithRawBody(statusCode int, reason string, resBody *io.ReadCloser) (bool, error) {
 	byteSlice, err := ioutil.ReadAll(*resBody)
 	if err != nil {
 		return false, errgo.Mask(err, errgo.Any)
@@ -27,7 +36,7 @@ func IsStatusWithRawBody(statusCode int, resBody *io.ReadCloser) (bool, error) {
 	// body reference.
 	*resBody = ioutil.NopCloser(bytes.NewReader(byteSlice))
 
-	return isStatus(statusCode, string(byteSlice))
+	return isStatus(statusCode, "", string(byteSlice))
 }
 
 func IsSuccessResponse(statusCode int) bool {
@@ -70,7 +79,7 @@ func ParseData(resBody *io.ReadCloser, v interface{}) error {
 //------------------------------------------------------------------------------
 // private
 
-func isStatus(statusCode int, responseBody string) (bool, error) {
+func isStatus(statusCode int, reason, responseBody string) (bool, error) {
 	var responsePayload ResponsePayload
 	if err := json.Unmarshal([]byte(responseBody), &responsePayload); err != nil {
 		// In case we receive a response we did not expect and cannot read, we just
@@ -79,7 +88,14 @@ func isStatus(statusCode int, responseBody string) (bool, error) {
 	}
 
 	if responsePayload.StatusCode == statusCode {
-		return true, nil
+		if reason == "" {
+			// We're not looking for a specific reason, so we're done
+			return true, nil
+		}
+		// Match end of status text to ": " + <reason>
+		if strings.HasSuffix(responsePayload.StatusText, ": "+reason) {
+			return true, nil
+		}
 	}
 
 	return false, nil

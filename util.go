@@ -36,7 +36,7 @@ func IsStatusAndReasonWithRawBody(statusCode int, reason string, resBody *io.Rea
 	// body reference.
 	*resBody = ioutil.NopCloser(bytes.NewReader(byteSlice))
 
-	return isStatus(statusCode, "", string(byteSlice))
+	return isStatus(statusCode, reason, string(byteSlice))
 }
 
 func IsSuccessResponse(statusCode int) bool {

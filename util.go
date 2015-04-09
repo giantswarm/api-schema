@@ -70,7 +70,7 @@ func ParseData(resBody *io.ReadCloser, v interface{}) error {
 	if err := json.Unmarshal(byteSlice, &target); err != nil {
 		// In case we receive a response we did not expect and cannot read, we just
 		// return an error containing the content of the response.
-		return errgo.New(string(byteSlice))
+		return newUnexpectedContentError(string(byteSlice))
 	}
 
 	return nil
@@ -84,7 +84,7 @@ func isStatus(statusCode int, reason, responseBody string) (bool, error) {
 	if err := json.Unmarshal([]byte(responseBody), &responsePayload); err != nil {
 		// In case we receive a response we did not expect and cannot read, we just
 		// return an error containing the content of the response.
-		return false, errgo.Newf(responseBody)
+		return false, newUnexpectedContentError(responseBody)
 	}
 
 	if responsePayload.StatusCode == statusCode {
@@ -99,6 +99,16 @@ func isStatus(statusCode int, reason, responseBody string) (bool, error) {
 	}
 
 	return false, nil
+}
+
+// newUnexpectedContentError creates an error containing the given content as messages, unless that is empty.
+// In that case a human readable message is returned.
+func newUnexpectedContentError(content string) error {
+	if content == "" {
+		return errgo.New("Unexpected empty response")
+	} else {
+		return errgo.New(content)
+	}
 }
 
 func newReason(text, reason string) string {

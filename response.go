@@ -55,7 +55,7 @@ func ParseResponse(resBody *io.ReadCloser) (*Response, error) {
 		if err := json.Unmarshal(byteSlice, &target); err != nil {
 			// In case we receive a response we did not expect and cannot read, we just
 			// return an error containing the content of the response.
-			return nil, errgo.New(string(byteSlice))
+			return nil, newUnexpectedContentError(string(byteSlice))
 		}
 	}
 
@@ -80,7 +80,7 @@ func (resp *Response) UnmarshalData(v interface{}) error {
 	if err := json.Unmarshal(resp.Data, v); err != nil {
 		// In case we receive a data field we did not expect, we just
 		// return an error containing the content of the response.
-		return errgo.New(string(resp.Data))
+		return newUnexpectedContentError(string(resp.Data))
 	}
 
 	return nil

@@ -65,11 +65,11 @@ func StatusWrongInputWithReason(reason string) *Response {
 }
 
 func StatusUserErrorWithReason(reason string) *Response {
-	return NewEmptyResponse(STATUS_CODE_USER_ERROR, newReason("user error", reason))
+	return NewEmptyResponse(STATUS_CODE_USER_ERROR, reason)
 }
 
 func StatusServerErrorWithReason(reason string) *Response {
-	return NewEmptyResponse(STATUS_CODE_SERVER_ERROR, newReason("server error", reason))
+	return NewEmptyResponse(STATUS_CODE_SERVER_ERROR, reason)
 }
 
 func StatusInvalidVersion() *Response {

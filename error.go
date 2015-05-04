@@ -37,7 +37,7 @@ func checkResponseErrorStatusCode(err error, statusCode int, reason string) bool
 	if reason != "" {
 		// Check reason part of the status text.
 		// See also util.go#newReason
-		if !strings.HasSuffix(respErr.statusText, ": "+reason) {
+		if (respErr.statusText != reason) && !strings.HasSuffix(respErr.statusText, ": "+reason) {
 			return false
 		}
 	}
@@ -79,6 +79,10 @@ func IsUserError(err error) bool {
 
 func IsServerError(err error) bool {
 	return checkResponseErrorStatusCode(err, STATUS_CODE_SERVER_ERROR, "")
+}
+
+func IsServerErrorWithReason(err error, reason string) bool {
+	return checkResponseErrorStatusCode(err, STATUS_CODE_SERVER_ERROR, reason)
 }
 
 func IsInvalidVersionError(err error) bool {

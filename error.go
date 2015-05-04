@@ -81,6 +81,10 @@ func IsServerError(err error) bool {
 	return checkResponseErrorStatusCode(err, STATUS_CODE_SERVER_ERROR, "")
 }
 
+func IsServerErrorWithReason(err error, reason string) bool {
+	return checkResponseErrorStatusCode(err, STATUS_CODE_SERVER_ERROR, reason)
+}
+
 func IsInvalidVersionError(err error) bool {
 	return checkResponseErrorStatusCode(err, STATUS_CODE_INVALID_VERSION_ERROR, "")
 }

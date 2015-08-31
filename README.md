@@ -5,7 +5,7 @@ For detailed information and responder as well as receiver implementations, see
 http://godoc.org/github.com/giantswarm/api-schema.
 
 ### facts
-- HTTP status codes not always met the required business logic
+- HTTP status codes not always meet the required business logic
 - status codes will be tried to match against behaviour
 - error messages conflict with user information
 - thus error handling is pain

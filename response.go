@@ -10,12 +10,16 @@ import (
 	"github.com/juju/errgo"
 )
 
+// The Response structure is a representation of responses
+// that are send back in response to HTTP requests.
 type Response struct {
 	StatusCode int             `json:"status_code"`
+	ErrorCode  int             `json:"error_code,omitempty"`
 	StatusText string          `json:"status_text"`
 	Data       json.RawMessage `json:"data,omitempty"`
 }
 
+// NewEmptyResponse creates a Response object with given values
 func NewEmptyResponse(statusCode int, statusText string) *Response {
 	return &Response{
 		StatusCode: statusCode,
@@ -23,6 +27,28 @@ func NewEmptyResponse(statusCode int, statusText string) *Response {
 	}
 }
 
+// SetStatusCode overwrites the StatusCode of the given response
+// and returns the given Response object.
+func (r *Response) SetStatusCode(statusCode int) *Response {
+	r.StatusCode = statusCode
+	return r
+}
+
+// SetErrorCode overwrites the ErrorCode of the given response
+// and returns the given Response object.
+func (r *Response) SetErrorCode(errorCode int) *Response {
+	r.ErrorCode = errorCode
+	return r
+}
+
+// SetStatusText overwrites the StatusText of the given response
+// and returns the given Response object.
+func (r *Response) SetStatusText(statusText string) *Response {
+	r.StatusText = statusText
+	return r
+}
+
+// NewResponse creates a Response object with given values
 func NewResponse(statusCode int, statusText string, data interface{}) (*Response, error) {
 	rawData, err := json.Marshal(data)
 	if err != nil {
@@ -36,6 +62,7 @@ func NewResponse(statusCode int, statusText string, data interface{}) (*Response
 	}, nil
 }
 
+// ParseResponse parses the given content into a Response object.
 func ParseResponse(resBody *io.ReadCloser) (*Response, error) {
 	byteSlice, err := ioutil.ReadAll(*resBody)
 	if err != nil {
@@ -62,6 +89,8 @@ func ParseResponse(resBody *io.ReadCloser) (*Response, error) {
 	return &target, nil
 }
 
+// FromHTTPResponse parses the content in the body of the given HTTP response
+// into a Response object.
 func FromHTTPResponse(resp *http.Response, err error) (*Response, error) {
 	if err != nil {
 		return nil, err
@@ -69,6 +98,10 @@ func FromHTTPResponse(resp *http.Response, err error) (*Response, error) {
 	return ParseResponse(&resp.Body)
 }
 
+// EnsureStatusCodes checks that the status code of the given response
+// equals to one of the given status codes.
+// If there is a match, nil is returned.
+// If there is no match, a ResponseError is returned.
 func (resp *Response) EnsureStatusCodes(statusCodes ...int) error {
 	if containsInt(statusCodes, resp.StatusCode) {
 		return nil
@@ -76,6 +109,8 @@ func (resp *Response) EnsureStatusCodes(statusCodes ...int) error {
 	return NewResponseError(resp)
 }
 
+// UnmarshalData unmarshals the data field of the given Response
+// into the given interface.
 func (resp *Response) UnmarshalData(v interface{}) error {
 	if err := json.Unmarshal(resp.Data, v); err != nil {
 		// In case we receive a data field we did not expect, we just

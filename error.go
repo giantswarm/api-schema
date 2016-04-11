@@ -88,3 +88,7 @@ func IsServerErrorWithReason(err error, reason string) bool {
 func IsInvalidVersionError(err error) bool {
 	return checkResponseErrorStatusCode(err, STATUS_CODE_INVALID_VERSION_ERROR, "")
 }
+
+func IsExpiredUserError(err error) bool {
+	return checkResponseErrorStatusCode(err, STATUS_CODE_ACCOUNT_INACTIVE, "")
+}

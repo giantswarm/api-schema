@@ -75,3 +75,7 @@ func StatusServerErrorWithReason(reason string) *Response {
 func StatusInvalidVersion() *Response {
 	return NewEmptyResponse(STATUS_CODE_INVALID_VERSION_ERROR, "invalid version")
 }
+
+func StatusExpiredUser() *Response {
+	return NewEmptyResponse(STATUS_CODE_ACCOUNT_INACTIVE, "user account expired")
+}

@@ -57,6 +57,10 @@ func ParseResponse(resBody *io.ReadCloser) (*Response, error) {
 			// return an error containing the content of the response.
 			return nil, newUnexpectedContentError(string(byteSlice))
 		}
+	} else {
+		// In case we receive a response we did not expect and cannot read, we just
+		// return an error containing the content of the response.
+		return nil, newUnexpectedContentError(string(byteSlice))
 	}
 
 	return &target, nil

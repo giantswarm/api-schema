@@ -1,10 +1,12 @@
+[![Go Reference](https://pkg.go.dev/badge/github.com/giantswarm/api-schema.svg)](https://pkg.go.dev/github.com/giantswarm/api-schema)
+
 # api-schema
 
 This repo contains types, constructors, and other functions that help in creating and parsing Giant Swarm API responses. It is the source of truth for what our status codes mean, and is useful as a dependency in go programs that wish to talk to or otherwise implement the Giant Swarm API.
 
 ### docs
 For detailed information and responder as well as receiver implementations, see
-http://godoc.org/github.com/giantswarm/api-schema.
+https://pkg.go.dev/github.com/giantswarm/api-schema.
 
 ### facts
 - HTTP status codes not always meet the required business logic
